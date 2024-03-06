@@ -71,7 +71,7 @@ module Fastlane
         file = open(swift_path, 'w')
         file.write("import Foundation\n")
         file.write("// swiftlint:disable identifier_name line_length file_length type_body_length superfluous_disable_command\n")
-        file.write("struct Translations {\n")
+        file.write("public struct Translations {\n")
 
         CSV.foreach(cvs_path) do |row|
           if row[key] && row[key].length > 0 && row.compact.length > 1
@@ -80,12 +80,12 @@ module Fastlane
             parameters = master.scan(/\%\d+/)
             if parameters.count > 0
               args_str = parameters.map { |e| e.sub('%', 'p') + ': String' }.join(', _ ')
-              file.write("\tstatic func #{key_row}(_ #{args_str}) -> String {")
+              file.write("\tpublic static func #{key_row}(_ #{args_str}) -> String {")
               file.write(" return NSLocalizedString(\"#{key_row}\", comment: \"\")")
               parameters.each { |e| file.write(".replacingOccurrences(of: \"#{e}\", with: #{e.sub('%', 'p')})") }
               file.write(" }\n")
             else
-              file.write("\tstatic let #{key_row} = NSLocalizedString(\"#{key_row}\", comment: \"\")\n")
+              file.write("\tpublic static let #{key_row} = NSLocalizedString(\"#{key_row}\", comment: \"\")\n")
             end
           end
         end
