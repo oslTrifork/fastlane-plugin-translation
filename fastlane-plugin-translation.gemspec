@@ -6,11 +6,11 @@ require 'fastlane/plugin/translation/version'
 Gem::Specification.new do |spec|
   spec.name          = 'fastlane-plugin-translation'
   spec.version       = Fastlane::Translation::VERSION
-  spec.author        = %q{Jakob Jensen}
-  spec.email         = %q{jje@trifork.com}
+  spec.authors       = ["Jakob Jensen", "Oliver Larsen"]
+  spec.email         = "osl@trifork.com"
 
   spec.summary       = %q{Handling translations from Google sheet.}
-  spec.homepage      = "https://github.com/trifork/fastlane-plugin-translation"
+  spec.homepage      = "https://github.com/oslTrifork/fastlane-plugin-translation"
   spec.license       = "MIT"
 
   spec.files         = Dir["lib/**/*"] + %w(README.md LICENSE)
