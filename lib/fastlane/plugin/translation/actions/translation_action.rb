@@ -81,11 +81,11 @@ module Fastlane
             if parameters.count > 0
               args_str = parameters.map { |e| e.sub('%', 'p') + ': String' }.join(', _ ')
               file.write("\tpublic static func #{key_row}(_ #{args_str}) -> String {")
-              file.write(" return NSLocalizedString(\"#{key_row}\", comment: \"\")")
+              file.write(" return NSLocalizedString(\"#{key_row}\", bundle: Bundle.module, comment: \"\")")
               parameters.each { |e| file.write(".replacingOccurrences(of: \"#{e}\", with: #{e.sub('%', 'p')})") }
               file.write(" }\n")
             else
-              file.write("\tpublic static let #{key_row} = NSLocalizedString(\"#{key_row}\", comment: \"\")\n")
+              file.write("\tpublic static let #{key_row} = NSLocalizedString(\"#{key_row}\", bundle: Bundle.module, comment: \"\")\n")
             end
           end
         end
